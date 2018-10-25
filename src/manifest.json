@@ -1,0 +1,30 @@
+{
+  "name": "Template Plugin",
+  "version": "1.0",
+  "description": "",
+  "permissions": ["declarativeContent", "activeTab", "tabs"],
+  "background": {
+    "scripts": ["background/index.js"],
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://*.google.com",
+      "http://*.google.com"
+    ],
+    "js": ["content/index.js"],
+    "run_at": "document_start",
+    "all_frames": false
+  }],
+  "externally_connectable": {
+    "matches": [
+      "https://*.google.com",
+      "http://*.google.com"
+    ]
+  },
+  "page_action": {
+    "default_popup": "popup/index.html"
+  
+  },
+  "manifest_version": 2
+}
