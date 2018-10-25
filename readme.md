@@ -3,7 +3,9 @@ This is a project template for chrome extension.
 
 ## Entries
 Background script: `src/background/index.js`.
+
 Content script: `src/content/index.js`.
+
 Popup: `src/popup/index.js`/`src/popup/index.html`.
 
 All scripts have ES6 configured, popup have React configured
