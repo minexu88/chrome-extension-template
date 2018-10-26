@@ -1,9 +1,15 @@
 const gulp = require('gulp');
-var clean = require('gulp-clean');
+const clean = require('gulp-clean');
 const webpack = require('webpack-stream');
 const webpackConfig = require('./config/webpack');
 const runSequence = require('run-sequence');
 const path = require('path');
+
+const isChildOf = (child, parent) => {
+  if (child === parent) return false;
+  const parentTokens = parent.split(path.sep).filter(i => i.length);
+  return parentTokens.every((t, i) => child.split(path.sep)[i] === t);
+};
 
 gulp.task('compile-background', () => {
   return gulp
@@ -47,5 +53,22 @@ gulp.task('clean', () => {
 
 gulp.task('build', ['clean'], callback => {
   runSequence('compile-background', 'compile-content', 'compile-popup', 'copy-resources');
+  callback();
+});
+
+gulp.task('watch', ['clean', 'build'], callback => {
+  const watcher = gulp.watch(['src/**']);
+  watcher.on('change', info => {
+    if (isChildOf(info.path, path.join(__dirname, 'src/content'))) {
+      runSequence('compile-content');
+    } else if (isChildOf(info.path, path.join(__dirname, 'src/background'))) {
+      runSequence('compile-background');
+    } else if (isChildOf(info.path, path.join(__dirname, 'src/popup'))) {
+      runSequence('compile-popup');
+    } else if (isChildOf(info.path, path.join(__dirname, 'src'))) {
+      runSequence('copy-resources');
+    }
+  });
+
   callback();
 });

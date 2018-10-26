@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=prod gulp build --require babel-register",
-    "test": "pwd"
+    "dev": "cross-env NODE_ENV=dev gulp watch --require babel-register"
   },
   "keywords": [
     "chrome extension",

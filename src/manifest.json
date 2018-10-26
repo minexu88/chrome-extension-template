@@ -9,8 +9,8 @@
   },
   "content_scripts": [{
     "matches": [
-      "https://*.google.com",
-      "http://*.google.com"
+      "https://*.google.com/",
+      "http://*.google.com/"
     ],
     "js": ["content/index.js"],
     "run_at": "document_start",
@@ -18,8 +18,8 @@
   }],
   "externally_connectable": {
     "matches": [
-      "https://*.google.com",
-      "http://*.google.com"
+      "https://*.google.com/",
+      "http://*.google.com/"
     ]
   },
   "page_action": {

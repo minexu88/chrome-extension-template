@@ -12,10 +12,6 @@ All scripts have ES6 configured, popup have React configured
 
 ## Usage
 1. Clone and copy the project
-2. `npm install`
-3. develop your own extension, modify code in `src` folder
-4. `npm run build`
-5. test the compiled extension in build folder
-
-## TODO
-1. Add a "dev" script supports hot update.
+2. install dependencies: `npm install`
+3. develop your own extension, modify code in `src` folder, use `npm run dev` to hot compile the code.
+4. build production code: `npm run build`
